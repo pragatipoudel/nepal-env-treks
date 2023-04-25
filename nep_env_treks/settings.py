@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'packages',
     'destinations',
     'homepage',
+    'inquiries',
+    'information',
 ]
 
 MIDDLEWARE = [

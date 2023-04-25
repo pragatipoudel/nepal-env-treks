@@ -6,8 +6,22 @@ class Activity(models.Model):
     # header_image = 
     details = models.TextField()
 
+    def __str__(self):
+        return self.name
+
 class Season(models.Model):
     name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+class Amenity(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
 
 class Package(models.Model):
     title = models.CharField(max_length=255)
@@ -26,6 +40,23 @@ class Package(models.Model):
     seasons = models.ManyToManyField(Season, blank=True)
     overview = models.TextField()
     destinations = models.ManyToManyField(Destination)
+    amenities = models.ManyToManyField(Amenity)
+
+class FullItinerary(models.Model):
+    package = models.OneToOneField(Package, on_delete=models.CASCADE)
+
+class DailyItinerary(models.Model):
+    title = models.CharField(max_length=255)
+    duration = models.IntegerField()
+    altitude = models.IntegerField(null=True, blank=True)
+    details = models.TextField()
+    full_itinerary = models.ForeignKey(FullItinerary, on_delete=models.CASCADE)
+
+class PriceTier(models.Model):
+    min_no_of_people = models.IntegerField(default=1)
+    max_no_of_people = models.IntegerField(null=True, blank=True)
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+
 
     
 
