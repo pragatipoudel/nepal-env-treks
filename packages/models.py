@@ -67,7 +67,7 @@ class FullItinerary(models.Model):
 class DailyItinerary(models.Model):
     day = models.IntegerField()
     title = models.CharField(max_length=255)
-    duration = models.IntegerField()
+    duration = models.FloatField(null=True, blank=True)
     altitude = models.IntegerField(null=True, blank=True)
     details = models.TextField()
     full_itinerary = models.ForeignKey(FullItinerary, on_delete=models.CASCADE)
@@ -83,7 +83,7 @@ class DailyItinerary(models.Model):
 class PriceTier(models.Model):
     min_no_of_people = models.IntegerField(default=1)
     max_no_of_people = models.IntegerField(null=True, blank=True)
-    price = models.DecimalField(max_digits=8, decimal_places=2)
+    price = models.FloatField()
 
     def __str__(self):
         return f'{self.price} ({self.min_no_of_people} - {self.max_no_of_people})'
