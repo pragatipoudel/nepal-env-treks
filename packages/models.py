@@ -65,6 +65,7 @@ class FullItinerary(models.Model):
 
 
 class DailyItinerary(models.Model):
+    day = models.IntegerField()
     title = models.CharField(max_length=255)
     duration = models.IntegerField()
     altitude = models.IntegerField(null=True, blank=True)
@@ -76,6 +77,7 @@ class DailyItinerary(models.Model):
 
     class Meta:
         verbose_name_plural = 'Daily Itineraries'
+        ordering = ['day']
 
 
 class PriceTier(models.Model):
