@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  db:
+  nepal_env_db:
     image: postgres
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
@@ -12,14 +12,14 @@ services:
 
   web:
     build: .
-    command: ['./wait-for-it.sh', 'db:5432', '--', '/code/run_develop.sh']
+    command: ['./wait-for-it.sh', 'nepal_env_db:5432', '--', '/code/run_develop.sh']
     volumes:
       - .:/code
       - ./uploads:/uploads
     ports:
       - '8000:8000'
     depends_on:
-      - db
+      - nepal_env_db
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres

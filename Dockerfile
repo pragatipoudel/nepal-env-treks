@@ -17,7 +17,7 @@ RUN npm install --global sass
 
 # Install other packages
 RUN apt-get update && apt-get install -y \
-        postgresql-client
+        postgresql-client python-dev
 
 
 RUN pip3 install uwsgi

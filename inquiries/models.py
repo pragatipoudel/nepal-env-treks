@@ -8,5 +8,11 @@ class Inquiry(models.Model):
     no_of_days = models.IntegerField(validators=[MinValueValidator(0)])
     start_date = models.DateField(null=True, blank=True, validators=[MinValueValidator(date.today)])
     name = models.CharField(max_length=255)
-    contact_phone = models.CharField(max_length=20) 
+    contact_phone = models.CharField(max_length=20)
     message = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = 'Inquiries'
