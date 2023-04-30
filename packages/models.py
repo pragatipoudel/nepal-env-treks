@@ -4,8 +4,8 @@ from destinations.models import Destination
 
 class Activity(models.Model):
     name = models.CharField(max_length=255)
-    header_image = models.ImageField(upload_to='images/destinations')
-    details = models.TextField()
+    header_image = models.ImageField(upload_to='images/destinations', null=True, blank=True)
+    details = models.TextField(blank=True)
 
     def __str__(self):
         return self.name
@@ -38,10 +38,11 @@ class Package(models.Model):
     min_group_size = models.PositiveIntegerField(null=True, blank=True)
     max_group_size = models.PositiveIntegerField(null=True, blank=True)
     activities = models.ManyToManyField(Activity)
-    difficulty_level = models.CharField(max_length=20, blank=True, choices=[
+    difficulty_level = models.CharField(max_length=20, null=True, blank=True, choices=[
         ('easy', 'Easy'),
         ('moderate', 'Moderate'),
-        ('difficult', 'Difficult')
+        ('challenging', 'Challenging'),
+        ('strenous', 'Strenous'),
     ])
     altitude = models.IntegerField(null=True, blank=True)
     rank = models.PositiveIntegerField(null=True, blank=True)
@@ -66,6 +67,7 @@ class FullItinerary(models.Model):
 
 class DailyItinerary(models.Model):
     day = models.IntegerField()
+    max_day = models.IntegerField(null=True, blank=True)
     title = models.CharField(max_length=255)
     duration = models.FloatField(null=True, blank=True)
     altitude = models.IntegerField(null=True, blank=True)

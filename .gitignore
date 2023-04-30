@@ -47,3 +47,5 @@ uploads/
 staticfiles/
 *.css
 *.css.map
+
+scraped-data/
