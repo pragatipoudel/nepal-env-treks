@@ -2,13 +2,140 @@
 {% load static %}
 
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/homepage.css' %}">
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<script defer src="{% static 'js/index.js' %}"></script>
+
 {% endblock %}
 
 {% block content %}
+{% include 'nav.html' %}
 
-<h1>Homepage</h1>
 
-<img src="{% static 'img/title-bg.jpg' %}">
+<header>
+    <img src="{% static 'img/title-bg.jpg' %}">
 
+    <section>
+        <h2>
+            Plan the perfect trip to Nepal
+        </h2>
+
+        <form>
+            <select name="destinations">
+                <option selected value="">Anywhere in Nepal</option>
+
+                {% for destination in destinations %}
+                    <option value="{{ destination.id }}">
+                        {{ destination.name }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <select name="activities">
+                <option selected value="">Any trip type</option>
+
+                {% for activity in activities %}
+                    <option value="{{ activity.id }}">
+                        {{ activity.name }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <button>
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+    </section>
+</header>
+
+<section id="trip-types">
+    {% for activity in activities|slice:":6" %}
+        <a class="trip-type">
+            <img src=" {{ activity.header_image.url }}">
+            <div class="name">{{ activity.name }}</div>
+        </a>
+    {% endfor %}
+</section>
+
+<section id="top-destinations">
+    <div class="title">
+        Top Destinations
+    </div>
+    {% for destination in destinations|slice:":4" %}
+    <a class="destination">
+        <img src="{{ destination.header_image.url }}">
+        <div class="name">{{destination.name}}</div>
+        <div class="info">{{ destination.package_count }} packages</div>
+
+    </a>
+    {% endfor %}
+</section>
+
+<section id="package-deals">
+    <div class="title">
+        Top Packages
+    </div>
+
+    {% for package in packages|slice:":6" %}
+    <a href="{% url 'detail' pk=package.pk %}" class="package-thumbnail">
+        <img src="{{ package.header_image.url }}">
+        <div class="info">
+            <div class="name">
+                {{ package.title }}
+            </div>
+            <div class="details">
+                {% for destination in package.destinations.all %}
+                <span>
+                    <i class="fas fa-map-marker-alt"></i>
+                    {{ destination.name }}
+                </span>
+                {% endfor %}
+                <span>
+                    <i class="fas fa-calendar"></i>
+                    {{ package.no_of_days }} days
+                </span>
+            </div>
+
+            {% if package.min_price %}
+            <div class="price">
+                <i class="fas fa-dollar-sign"></i>
+                {{ package.min_price }}
+            </div>
+            {% endif %}
+        </div>
+    </a>
+    {% endfor %}
+</section>
+
+<section id="explore">
+    <h2>
+        Explore Nepal
+    </h2>
+
+    <div class="summary-2">
+        <a href="#" class="item">
+            <span>8</span>
+            Cultural Heritages
+        </a>
+
+        <a href="#" class="item">
+            <span>2</span>
+            Natural Heritages
+        </a>
+
+        <a href="#" class="item">
+            <span>8</span>
+            Peaks over 8000 meters
+        </a>
+    </div>
+
+    <div class="links">
+        <a href="#">About Nepal</a>
+        <a href="#">Geography</a>
+        <a href="#">Climate</a>
+        <a href="#">Culture</a>
+        <a href="#">History</a>
+    </div>
+</section>
+
+{% include 'footer.html' %}
 {% endblock %}

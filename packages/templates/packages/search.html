@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/packages/search.css' %}">
+    <script defer src="{% static 'js/packages/search.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+    {% include 'nav.html' with elevate_nav=True %}
+
+    <aside>
+        <form method="GET">
+            <div class="input">
+                <label for="destination">Destination</label>
+                <select multiple name="destination">
+                    <option selected value="">Anywhere in Nepal</option>
+
+                    {% for destination in destinations %}
+                        <option value="{{ destination.id }}">
+                            {{ destination.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="input">
+                <label for="activity">Activity</label>
+                <select multiple name="activity">
+                    <option selected value="">Any Trip Type</option>
+                    
+                    {% for activity in activities %}
+                        <option value="{{ activity.id }}">
+                            {{ activity.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="input">
+                <label for="days">Days</label>
+                <input type="text" class="slider-input days" name="days" readonly value="Any">
+                <div class="slider days"></div>
+            </div>
+
+            <div class="input">
+                <label for="price">Price</label>
+                <input type="text" class="slider-input price" name="price" readonly value="Any">
+                <div class="slider price"></div>
+            </div>
+
+            <button>
+                <i class="fas fa-search"></i> &nbsp;
+                Find Packages
+            </button>
+        </form>
+    </aside>
+
+    <main>
+        <h2>
+            Search Results
+        </h2>
+        <div class="search-header">
+            <label>
+                Sort By
+            </label>
+            <div class="sort-by">
+                <a href="#"><i class="fas fa-sort-amount-down-alt"></i></a>
+                <a href="#"><i class="fas fa-sort-amount-down"></i></a>
+                <span>Days</span>
+            </div>
+            <div class="sort-by">
+                <a href="#" class="selected"><i class="fas fa-sort-amount-down-alt"></i></a>
+                <a href="#"><i class="fas fa-sort-amount-down"></i></a>
+                <span>Price</span>
+            </div>
+        </div>
+
+        <div class="search-list">
+            {% for package in package|slice:":6" %}
+            <div href="{% url 'detail' pk=package.pk %}" class="package-thumbnail">
+                <img src="{{ package.header_image.url }}">
+                <div class="info">
+                    <div class="name">
+                        {{ package.title }}
+                    </div>
+                    <div class="details">
+                        {% for destination in package.destinations.all %}
+                        <span>
+                            <i class="fas fa-map-marker-alt"></i>
+                            {{ destination.name }}
+                        </span>
+                        {% endfor %}
+                        <span>
+                            <i class="fas fa-calendar"></i>
+                            {{ package.no_of_days }} days
+                        </span>
+                    </div>
+
+                    {% if package.min_price %}
+                    <div class="price">
+                        <i class="fas fa-dollar-sign"></i>
+                        {{ package.min_price }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="search-footer">
+            <div class="paginator">
+                <a href="#"><i class="fas fa-chevron-left"></i></a>
+
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <span>...</span>
+                <a href="#">8</a>
+                <a href="#">9</a>
+
+                <a href="#"><i class="fas fa-chevron-right"></i></a>
+            </div>
+    </main>
+
+    {% include 'footer.html' %}
+{% endblock %}

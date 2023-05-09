@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/packages/details.css' %}">
+    <script defer src="{% static 'js/packages/details.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    {% include 'nav.html' with elevate_nav=True %}
+
+    <header>
+        <h2>
+            {{ package.title }}
+        </h2>
+        <div class="details">
+            {% for destination in package.destinations.all %}
+            <span>
+                <i class="fas fa-map-marker-alt"></i>
+                {{ destination.name }}
+            </span>
+            {% endfor %}
+
+            {% comment %} <span>
+                <i class="fas fa-calendar"></i>
+                {{ package.no_of_days }} days
+            </span> {% endcomment %}
+        </div>
+        <img src="{{ package.header_image.url }}">
+    </header>
+
+
+    <main>
+        <section id="booking">
+            {% if package.min_price %}
+            <div class="price-before">
+                Starting from
+            </div>
+            <div class="price">
+                <div class="price">
+                    <i class="fas fa-dollar-sign"></i>
+                    {{ package.min_price }} <span>/ person</span>
+                </div>
+                {% endif %}
+                <ul class="info">
+                    <li> <i class="fas fa-check"></i> Group discount available </li>
+                    <li> <i class="fas fa-check"></i> Best price guaranteed </li>
+                </ul>
+                <button>Book Now</button>
+            </div>
+        </section>
+
+        <section id="trip-facts">
+            <h3>
+                Trip Facts
+            </h3>
+
+            <div class="fact-list">
+                <div class="fact">
+                    <i class="far fa-calendar-alt"></i>
+                        <div class="key">Days</div>
+                        <div class="value">{{ package.no_of_days}}</div>
+                </div>
+                <div class="fact">
+                    <i class="fas fa-user-friends"></i>
+                    <div class="key">Group Size</div>
+                    <div class="value">1+</div>
+                </div>
+
+                <div class="fact">
+                    <i class="fas fa-hiking"></i>
+                    <div class="key">Trip Type</div>
+                    <div class="value">{{ package.activities.first }}</div>
+                </div>
+
+                <div class="fact">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <div class="key">Grade</div>
+                    <div class="value">{{ package.difficulty_level }}</div>
+                </div>
+
+                <div class="fact">
+                    <i class="fas fa-mountain"></i>
+                    <div class="key">Altitude</div>
+                    <div class="value">{{ package.altitude }} meter</div>
+                </div>
+
+                <div class="fact">
+                    <i class="fas fa-temperature-high"></i>
+                    <div class="key">Season</div>
+                    {% for season in package.seasons.all %}
+                    <div class="value">{{ season.name }} </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </section>
+
+        <section id="overview">
+            <h3>
+                Overview
+            </h3>
+            <p> {{ package.overview|linebreaksbr }}</p>
+        </section>
+</main>
+
+<section id="itinerary">
+    <h3>
+        Itinerary
+    </h3>
+    <ul>
+        {% for daily_itinerary in package.full_itinerary.daily_itineraries.all %}
+          <li>{{ daily_itinerary.title }}</li>
+        {% endfor %}
+      </ul>
+</section>
+
+
+{% include 'footer.html' %}
+{% endblock %}

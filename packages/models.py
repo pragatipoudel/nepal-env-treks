@@ -49,14 +49,20 @@ class Package(models.Model):
     seasons = models.ManyToManyField(Season, blank=True)
     overview = models.TextField()
     destinations = models.ManyToManyField(Destination)
-    amenities = models.ManyToManyField(Amenity)
+    amenities = models.ManyToManyField(Amenity, blank=True)
+
+    class Meta:
+        ordering =  ['rank']
 
     def __str__(self):
         return self.title
+    
+    def min_price(self):
+        return self.pricetier_set.first() and self.pricetier_set.first().price
 
 
 class FullItinerary(models.Model):
-    package = models.OneToOneField(Package, on_delete=models.CASCADE)
+    package = models.OneToOneField(Package, on_delete=models.CASCADE, related_name='full_itinerary')
 
     def __str__(self):
         return self.package.title
@@ -72,7 +78,7 @@ class DailyItinerary(models.Model):
     duration = models.FloatField(null=True, blank=True)
     altitude = models.IntegerField(null=True, blank=True)
     details = models.TextField()
-    full_itinerary = models.ForeignKey(FullItinerary, on_delete=models.CASCADE)
+    full_itinerary = models.ForeignKey(FullItinerary, on_delete=models.CASCADE, related_name='daily_itineraries')
 
     def __str__(self):
         return self.title
@@ -80,12 +86,18 @@ class DailyItinerary(models.Model):
     class Meta:
         verbose_name_plural = 'Daily Itineraries'
         ordering = ['day']
+        unique_together = ('full_itinerary', 'day')
+
 
 
 class PriceTier(models.Model):
+    package = models.ForeignKey(Package, on_delete=models.CASCADE)
     min_no_of_people = models.IntegerField(default=1)
     max_no_of_people = models.IntegerField(null=True, blank=True)
     price = models.FloatField()
 
     def __str__(self):
         return f'{self.price} ({self.min_no_of_people} - {self.max_no_of_people})'
+    
+    class Meta:
+        ordering = ['price']

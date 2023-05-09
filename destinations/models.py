@@ -6,5 +6,8 @@ class Destination(models.Model):
     details = models.TextField(blank=True)
     rank = models.PositiveIntegerField(default=1)
 
+    class Meta:
+        ordering = ['rank']
+
     def __str__(self):
         return self.name

@@ -1,0 +1,55 @@
+:root {
+    --color-primary: #1E88E5;
+    --color-primary-dark: #1565C0;
+    --color-primary-darker: #0D47A1;
+    --color-primary-light: #64B5F6;
+    --color-primary-lighter: #90CAF9;
+
+    --color-tertiary: #F4511E;
+    --color-tertiary-dark: #BF360C;
+    --color-tertiary-light: #FF8A65;
+    --color-tertiary-lighter: #FFAB91;
+
+    --color-secondary: #7CB342;
+    --color-secondary-dark: #689F38;
+    --color-secondary-darker: #33691E;
+    --color-secondary-light: #AED581;
+    --color-secondary-lighter: #C5E1A5;
+
+    --font-family-title: 'Acme', sans-serif;;
+    --font-family-heading: 'Bebas Neue', cursive;
+    --font-family-heading-2: 'Oswald', cursive;
+    --font-family-normal: 'Open Sans', sans-serif;
+
+    --font-family-icon: 'Font Awesome 5 Free';
+
+    --color-background: #fafafa;
+
+    --height-nav-bar: 50px;
+}
+
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: var(--font-family-normal);
+    background-color: var(--color-background);
+}
+
+a {
+    text-decoration: none;
+}
+
+.selectize-input {
+    height: 100%;
+}
