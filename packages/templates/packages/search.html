@@ -14,11 +14,11 @@
         <form method="GET">
             <div class="input">
                 <label for="destination">Destination</label>
-                <select multiple name="destination">
-                    <option selected value="">Anywhere in Nepal</option>
+                <select name="destination">
+                    <option value="">Anywhere in Nepal</option>
 
                     {% for destination in destinations %}
-                        <option value="{{ destination.id }}">
+                        <option value="{{ destination.id }}" {% if destination.id == selected_destination %}selected{% endif %}>
                             {{ destination.name }}
                         </option>
                     {% endfor %}
@@ -27,11 +27,11 @@
 
             <div class="input">
                 <label for="activity">Activity</label>
-                <select multiple name="activity">
-                    <option selected value="">Any Trip Type</option>
+                <select name="activity">
+                    <option value="">Any Trip Type</option>
                     
                     {% for activity in activities %}
-                        <option value="{{ activity.id }}">
+                        <option value="{{ activity.id }}" {% if activity.id == selected_activity %}selected{% endif %}>
                             {{ activity.name }}
                         </option>
                     {% endfor %}
@@ -78,8 +78,8 @@
         </div>
 
         <div class="search-list">
-            {% for package in package|slice:":6" %}
-            <div href="{% url 'detail' pk=package.pk %}" class="package-thumbnail">
+            {% for package in packages %}
+            <div href="{% url 'packages:detail' pk=package.pk %}" class="package-thumbnail">
                 <img src="{{ package.header_image.url }}">
                 <div class="info">
                     <div class="name">
@@ -110,16 +110,25 @@
         </div>
         <div class="search-footer">
             <div class="paginator">
-                <a href="#"><i class="fas fa-chevron-left"></i></a>
+                {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}&{{ query }}"><i class="fas fa-chevron-left"></i></a>
+                {% endif %}
 
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <span>...</span>
-                <a href="#">8</a>
-                <a href="#">9</a>
+                {% for page in page_obj.paginator.page_range %}
+                    {% if page == page_obj.number %}
+                        <a href="?page={{ page }}&{{ query }}" class="active">{{ page }}</a>
 
-                <a href="#"><i class="fas fa-chevron-right"></i></a>
+                    {% elif page == 1 or page == page_obj.paginator.num_pages or page == page_obj.number|add:"-1" or page == page_obj.number|add:"1" %}
+                        <a href="?page={{ page }}&{{ query }}">{{ page }}</a>
+
+                    {% elif page == page_obj.number|add:"-3" or page == page_obj.number|add:"3" %}
+                        ...
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}&{{ query }}"><i class="fas fa-chevron-right"></i></a>
+                {% endif %}
             </div>
     </main>
 

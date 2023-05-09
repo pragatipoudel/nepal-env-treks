@@ -19,8 +19,8 @@
             Plan the perfect trip to Nepal
         </h2>
 
-        <form>
-            <select name="destinations">
+        <form action="{% url 'packages:search' %}">
+            <select name="destination">
                 <option selected value="">Anywhere in Nepal</option>
 
                 {% for destination in destinations %}
@@ -30,7 +30,7 @@
                 {% endfor %}
             </select>
 
-            <select name="activities">
+            <select name="activity">
                 <option selected value="">Any trip type</option>
 
                 {% for activity in activities %}
@@ -76,7 +76,7 @@
     </div>
 
     {% for package in packages|slice:":6" %}
-    <a href="{% url 'detail' pk=package.pk %}" class="package-thumbnail">
+    <a href="{% url 'packages:detail' pk=package.pk %}" class="package-thumbnail">
         <img src="{{ package.header_image.url }}">
         <div class="info">
             <div class="name">
