@@ -49,7 +49,7 @@
 
 <section id="trip-types">
     {% for activity in activities|slice:":6" %}
-        <a class="trip-type">
+        <a href="{% url 'packages:search' %}?activity={{ activity.id }}" class="trip-type">
             <img src=" {{ activity.header_image.url }}">
             <div class="name">{{ activity.name }}</div>
         </a>
@@ -61,7 +61,7 @@
         Top Destinations
     </div>
     {% for destination in destinations|slice:":4" %}
-    <a class="destination">
+    <a href="{% url 'packages:search' %}?destination={{ destination.id }}" class="destination">
         <img src="{{ destination.header_image.url }}">
         <div class="name">{{destination.name}}</div>
         <div class="info">{{ destination.package_count }} packages</div>

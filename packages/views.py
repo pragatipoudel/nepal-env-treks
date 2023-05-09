@@ -14,7 +14,7 @@ class PackageDetailsView(DetailView):
 class PackageSearchView(ListView):
     template_name = 'packages/search.html'
     context_object_name = 'packages'
-    paginate_by = 6
+    paginate_by = 12
 
     def get_queryset(self):
         destination = self.request.GET.get('destination')

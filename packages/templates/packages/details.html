@@ -73,11 +73,13 @@
                     <div class="value">{{ package.activities.first }}</div>
                 </div>
 
+                {% if package.difficulty_level %}
                 <div class="fact">
                     <i class="fas fa-tachometer-alt"></i>
                     <div class="key">Grade</div>
-                    <div class="value">{{ package.difficulty_level }}</div>
+                    <div class="value">{{ package.get_difficulty_level_display }}</div>
                 </div>
+                {% endif %}
 
                 <div class="fact">
                     <i class="fas fa-mountain"></i>
@@ -85,6 +87,7 @@
                     <div class="value">{{ package.altitude }} meter</div>
                 </div>
 
+                {% if package.seasons.count > 0 %}
                 <div class="fact">
                     <i class="fas fa-temperature-high"></i>
                     <div class="key">Season</div>
@@ -92,7 +95,7 @@
                     <div class="value">{{ season.name }} </div>
                     {% endfor %}
                 </div>
-
+                {% endif %}
             </div>
         </section>
 
@@ -110,7 +113,19 @@
     </h3>
     <ul>
         {% for daily_itinerary in package.full_itinerary.daily_itineraries.all %}
-          <li>{{ daily_itinerary.title }}</li>
+          <li>
+            <div class="day">
+                {{ daily_itinerary.day }} {% if daily_itinerary.max_day %} - {{ daily_itinerary.max_day }}{% endif %}
+            </div>
+
+            <div class="title">
+                {{ daily_itinerary.title }}
+            </div>
+
+            <div class="details">
+                {{ daily_itinerary.details|linebreaksbr }}
+            </div>
+          </li>
         {% endfor %}
       </ul>
 </section>
