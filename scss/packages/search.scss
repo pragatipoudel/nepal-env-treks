@@ -21,7 +21,6 @@ aside {
     padding: 96px 32px;
     border-right: 1px solid #0001;
     height: 100%;
-    z-index: -10;
 
     form {
         display: flex;
@@ -83,6 +82,7 @@ main {
     margin-top: var(--height-nav-bar);
     padding: 20px 32px 0;
     margin-left: 255px;
+    min-height: calc(100vh - 64px);
 
     h2 {
         margin: 0;
@@ -148,6 +148,7 @@ main {
         .package-thumbnail {
             width: 360px;
         }
+
     }
 
     .search-footer {
@@ -187,6 +188,10 @@ main {
             }
         }
     }
+}
+
+footer {
+    z-index: 1;
 }
 
 @media screen and (max-width: 1080px) {

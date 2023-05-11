@@ -38,7 +38,7 @@
                 </select>
             </div>
 
-            <div class="input">
+            <!-- <div class="input">
                 <label for="days">Days</label>
                 <input type="text" class="slider-input days" name="days" readonly value="Any">
                 <div class="slider days"></div>
@@ -48,7 +48,7 @@
                 <label for="price">Price</label>
                 <input type="text" class="slider-input price" name="price" readonly value="Any">
                 <div class="slider price"></div>
-            </div>
+            </div> -->
 
             <button>
                 <i class="fas fa-search"></i> &nbsp;
@@ -106,8 +106,13 @@
                     {% endif %}
                 </div>
             </a>
+            {% empty %}
+            <div class="empty-search">
+                No packages found for this search.
+            </div>
             {% endfor %}
         </div>
+        {% if packages.count %}
         <div class="search-footer">
             <div class="paginator">
                 {% if page_obj.has_previous %}
@@ -130,6 +135,8 @@
                 <a href="?page={{ page_obj.next_page_number }}&{{ query }}"><i class="fas fa-chevron-right"></i></a>
                 {% endif %}
             </div>
+        </div>
+        {% endif %}
     </main>
 
     {% include 'footer.html' %}
