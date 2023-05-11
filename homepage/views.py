@@ -11,7 +11,7 @@ class HomePageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        destinations = Destination.objects.annotate(package_count=Count('package'))
+        destinations = Destination.objects.all()
         activities = Activity.objects.all()
         packages = Package.objects.all()
 

@@ -64,7 +64,7 @@
     <a href="{% url 'packages:search' %}?destination={{ destination.id }}" class="destination">
         <img src="{{ destination.header_image.url }}">
         <div class="name">{{destination.name}}</div>
-        <div class="info">{{ destination.package_count }} packages</div>
+        <div class="info">{{ destination.package_set.count }} packages</div>
 
     </a>
     {% endfor %}
