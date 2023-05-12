@@ -212,6 +212,7 @@ footer {
 
 @media screen and (max-width: 800px) {
     aside {
+        position: static;
         width: 100vw;
         flex: auto;
         border-right: 0;
@@ -238,6 +239,7 @@ footer {
         padding: 0;
         width: 100vw;
         flex: auto;
+        margin-left: 0;
 
         h2 {
             font-size: 34px;

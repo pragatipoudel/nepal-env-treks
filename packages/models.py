@@ -6,12 +6,14 @@ class Activity(models.Model):
     name = models.CharField(max_length=255)
     header_image = models.ImageField(upload_to='images/destinations', null=True, blank=True)
     details = models.TextField(blank=True)
+    rank = models.IntegerField(default=100)
 
     def __str__(self):
         return self.name
     
     class Meta:
         verbose_name_plural = 'Activities'
+        ordering = ['rank']
 
 
 class Season(models.Model):
