@@ -1,8 +1,5 @@
 $(function() {
 
-    // Convert all select inputs to selectize inputs.
-    $('select').selectize();
-
     // Elevate the nav bar on scroll.
     const nav = $('nav');
     $(window).scroll(function() {

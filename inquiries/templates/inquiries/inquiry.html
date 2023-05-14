@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/inquiries/inquiry.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'nav.html' with elevate_nav=True %}
+
+<main>
+    <h2>
+        Request a booking
+    </h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">
+            Submit
+        </button>
+    </form>
+</main>
+
+{% include 'footer.html' %}
+{% endblock %}

@@ -11,6 +11,7 @@ from packages.models import (
     Package,
     FullItinerary,
     DailyItinerary,
+    PriceTier,
 )
 
 
@@ -44,6 +45,7 @@ def load_package(destination, activity, package_details, num_days):
     image = load_image(package_details['image'])
     difficulty_level = package_details['grade']
     altitude = package_details['altitude']
+    price = package_details.get('price', None)
 
     package = Package.objects.update_or_create(
         title=title,
@@ -57,6 +59,15 @@ def load_package(destination, activity, package_details, num_days):
     )[0]
     package.destinations.add(destination)
     package.activities.add(activity)
+
+    if price:
+        PriceTier.objects.update_or_create(
+            package=package,
+            min_no_of_people=1,
+            defaults={
+                'price': price,
+            }
+        )
 
     return package
 

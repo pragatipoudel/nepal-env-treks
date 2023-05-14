@@ -62,7 +62,7 @@
             Search Results
         </h2>
         <div class="search-header">
-            <label>
+            <!--label>
                 Sort By
             </label>
             <div class="sort-by">
@@ -74,7 +74,7 @@
                 <a href="#" class="selected"><i class="fas fa-sort-amount-down-alt"></i></a>
                 <a href="#"><i class="fas fa-sort-amount-down"></i></a>
                 <span>Price</span>
-            </div>
+            </div-->
         </div>
 
         <div class="search-list">
@@ -119,6 +119,7 @@
                 <a href="?page={{ page_obj.previous_page_number }}&{{ query }}"><i class="fas fa-chevron-left"></i></a>
                 {% endif %}
 
+                {% if page_obj.paginator.num_pages > 1 %}
                 {% for page in page_obj.paginator.page_range %}
                     {% if page == page_obj.number %}
                         <a href="?page={{ page }}&{{ query }}" class="active">{{ page }}</a>
@@ -130,6 +131,7 @@
                         ...
                     {% endif %}
                 {% endfor %}
+                {% endif %}
 
                 {% if page_obj.has_next %}
                 <a href="?page={{ page_obj.next_page_number }}&{{ query }}"><i class="fas fa-chevron-right"></i></a>

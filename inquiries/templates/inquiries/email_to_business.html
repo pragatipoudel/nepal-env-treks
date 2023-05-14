@@ -1,0 +1,28 @@
+<p>
+Hi,
+</p>
+
+<p>
+    We have received a new booking request for the following from envtrek.com.
+</p>
+
+
+<h2>Details about booking</h2>
+
+<p style="white-space: pre;">
+Booking Title: {{ inquiry.title }}
+Name: {{ inquiry.contact_name }}
+Email: {{ inquiry.contact_email }}
+Number of people: {{ inquiry.no_of_people }}
+Phone: {{ inquiry.contact_phone }}
+Number of days: {{ inquiry.no_of_days }}
+Start date: {{ inquiry.start_date }}
+</p>
+
+<h3>
+    Additional Message from Client:
+</h3>
+
+<p style="white-space: pre;">
+    {{ inquiry.message }}
+</p>

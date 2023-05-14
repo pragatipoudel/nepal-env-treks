@@ -46,7 +46,7 @@
                     <li> <i class="fas fa-check"></i> Group discount available </li>
                     <li> <i class="fas fa-check"></i> Best price guaranteed </li>
                 </ul>
-                <button>Book Now</button>
+                <a href="{% url 'inquiries:inquiry' %}?title={{ package.title|urlencode }}">Request Booking</a>
             </div>
         </section>
 

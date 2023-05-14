@@ -44,7 +44,7 @@ class Package(models.Model):
         ('easy', 'Easy'),
         ('moderate', 'Moderate'),
         ('challenging', 'Challenging'),
-        ('strenous', 'Strenous'),
+        ('strenuous', 'Strenuous'),
     ])
     altitude = models.IntegerField(null=True, blank=True)
     rank = models.PositiveIntegerField(null=True, blank=True)

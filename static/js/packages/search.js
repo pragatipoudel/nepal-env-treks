@@ -30,11 +30,7 @@
 //     });
 // }
 
-$(function() {
-
-    // Convert all select inputs to selectize inputs.
-    $('select').selectize();
-
+// $(function() {
 //     // Days and price range sliders.
 //     convertToRangeSlider(
 //         'aside .slider.days',
@@ -46,4 +42,4 @@ $(function() {
 //         'aside .slider-input.price',
 //         0, 3000, '$', 200,
 //     );
-});
+// });

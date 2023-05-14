@@ -4,17 +4,23 @@ footer {
     flex-wrap: wrap;
     width: 100%;
     padding: 48px 32px;
+    padding-bottom: 8px;
     background-color: var(--color-primary);
     color: white;
 
     section {
         display: flex;
         flex-direction: column;
-        width: 250px;
+        width: 300px;
         margin-bottom: 16px;
 
         h3 {
             font-family: var(--font-family-heading-2);
+        }
+
+        .map-container, .map-container > iframe {
+            width: 300px;
+            height: 250px;
         }
 
         a {
