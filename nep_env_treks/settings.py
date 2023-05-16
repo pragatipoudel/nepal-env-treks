@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'phonenumber_field',
+    'captcha',
+
     'packages',
     'destinations',
     'homepage',
@@ -156,3 +158,8 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 EMAIL_PORT = os.environ.get('EMAIL_PORT', 25)
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS') == 'TRUE'
 EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL') == 'TRUE'
+
+
+# Recatpcha settings
+RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')

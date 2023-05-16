@@ -3,3 +3,4 @@ psycopg2==2.9
 Pillow==9.5
 requests==2.29
 django-phonenumber-field[phonenumbers]==7.1.0
+django-recaptcha==3.0.0
