@@ -1,0 +1,34 @@
+@import '../base';
+@import '../nav';
+@import '../footer';
+
+:root {
+    --width-page: 1100px;
+    --width-content: 60%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    margin-top: calc(var(--height-nav-bar) + 32px);
+    width: var(--width-page);
+
+    h2 {
+        margin: 0;
+        font-size: 44px;
+        font-family: var(--font-family-heading);
+        font-weight: 200;
+        color: #333;
+    }
+
+    p {
+        text-align: justify;
+    }
+}
+

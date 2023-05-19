@@ -13,3 +13,11 @@ class ContactInformation(models.Model):
 
     class Meta:
         verbose_name_plural = 'Contact Informations'
+
+class Information(models.Model):
+    key = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
+    details = models.TextField()
+
+    def __str__(self):
+        return self.title

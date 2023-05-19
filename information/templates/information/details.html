@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/information/details.css' %}">
+    {% endblock %}
+
+{% block content %}
+    {% include 'nav.html' with elevate_nav=True %}
+
+    <header>
+        <h2>
+            {{ information.title }}
+        </h2>
+        <p>{{ information.details|linebreaksbr }}</p>
+    </header>
+        
+
+    {% include 'footer.html' %}
+{% endblock %}
