@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils.text import slugify
+from django.urls import reverse
 from destinations.models import Destination
 
 
@@ -52,15 +54,24 @@ class Package(models.Model):
     overview = models.TextField()
     destinations = models.ManyToManyField(Destination)
     amenities = models.ManyToManyField(Amenity, blank=True)
+    slug = models.SlugField(max_length=255, blank=True)
 
     class Meta:
         ordering =  ['rank']
+
+    def save(self, *args, **kwargs):
+        if self.slug == '':
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
     
     def min_price(self):
         return self.pricetier_set.first() and self.pricetier_set.first().price
+    
+    def get_absolute_url(self):
+         return reverse('packages:detail', kwargs={ 'slug': self.slug })
 
 
 class FullItinerary(models.Model):

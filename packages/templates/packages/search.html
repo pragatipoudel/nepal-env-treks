@@ -79,7 +79,7 @@
 
         <div class="search-list">
             {% for package in packages %}
-            <a href="{% url 'packages:detail' pk=package.pk %}" class="package-thumbnail">
+            <a href="{{ package.get_absolute_url }}" class="package-thumbnail">
                 <img src="{{ package.header_image.url }}">
                 <div class="info">
                     <div class="name">

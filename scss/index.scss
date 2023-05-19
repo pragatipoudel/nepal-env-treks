@@ -4,10 +4,31 @@
 @import 'packages/thumbnail';
 
 body {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
 
+    #request {
+        z-index: 100;
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+
+        padding: 8px 10px;
+        background-color: var(--color-tertiary-dark);
+        color: #fff;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+        border-radius: 6px;
+        box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+        font-weight: 600;
+
+        &:hover {
+            background-color: var(--color-tertiary);
+        }
+    }
 }
 
 header {
@@ -74,6 +95,21 @@ header {
                 }
             }
         }
+
+        // .request {
+        //     display: flex;
+        //     flex-direction: column;
+        //     align-items: center;
+        //     margin-top: 8px;
+
+        //     span {
+        //         color: 
+        //     }
+
+        //     a {
+        //         color: white;
+        //     }
+        // }
     }
 }
 
@@ -330,6 +366,7 @@ header {
         section {
             margin: 48px 16px 32px;
             padding: 16px;
+            padding-bottom: 24px;
 
             h2 {
                 font-size: 22px;

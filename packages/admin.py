@@ -17,6 +17,7 @@ class PriceTierInline(admin.TabularInline):
 
 class PackageAdmin(admin.ModelAdmin):
     inlines = [PriceTierInline]
+    readonly_fields = ['slug']
 
 
 admin.site.register(Activity)

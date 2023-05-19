@@ -10,6 +10,10 @@
 {% block content %}
 {% include 'nav.html' %}
 
+<a href="{% url 'inquiries:inquiry' %}" id="request">
+    Request Booking
+</a>
+
 
 <header>
     <img src="{% static 'img/title-bg.jpg' %}">
@@ -42,8 +46,13 @@
 
             <button>
                 <i class="fas fa-search"></i>
+                View Packages
             </button>
         </form>
+
+        <!-- <div class="request">
+            <a href="{% url 'inquiries:inquiry' %}">Request Info</a>
+        </div> -->
     </section>
 </header>
 
@@ -76,7 +85,7 @@
     </div>
 
     {% for package in packages|slice:":6" %}
-    <a href="{% url 'packages:detail' pk=package.pk %}" class="package-thumbnail">
+    <a href="{{ package.get_absolute_url }}" class="package-thumbnail">
         <img src="{{ package.header_image.url }}">
         <div class="info">
             <div class="name">

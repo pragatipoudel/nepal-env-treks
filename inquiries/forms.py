@@ -15,6 +15,9 @@ class InquiryForm(forms.ModelForm):
     class Meta:
         model = Inquiry
         fields = '__all__'
+        labels = {
+            'title': 'Trip you are interested in'
+        }
         widgets = {
             'start_date': forms.DateInput(attrs={'type': 'date'}),
             'message': forms.Textarea(attrs={ 'cols': None })

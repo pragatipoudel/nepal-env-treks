@@ -6,6 +6,10 @@
     <script defer src="{% static 'js/packages/details.js' %}"></script>
 {% endblock %}
 
+{% block title %}
+{{ package.title }} - Nepal Environmental Treks and Expedition
+{% endblock %}
+
 {% block content %}
     {% include 'nav.html' with elevate_nav=True %}
 
@@ -36,7 +40,9 @@
             <div class="price-before">
                 Starting from
             </div>
+            {% endif %}
             <div class="price">
+                {% if package.min_price %}
                 <div class="price">
                     <i class="fas fa-dollar-sign"></i>
                     {{ package.min_price }} <span>/ person</span>

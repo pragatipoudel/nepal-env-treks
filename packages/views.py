@@ -1,6 +1,3 @@
-from typing import Any, Dict
-from django.db.models.query import QuerySet
-from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 from destinations.models import Destination
 from .models import Package, Activity
