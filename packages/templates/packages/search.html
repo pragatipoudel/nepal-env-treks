@@ -10,6 +10,7 @@
 
     {% include 'nav.html' with elevate_nav=True %}
 
+    {% if not selected_event %}
     <aside>
         <form method="GET">
             <div class="input">
@@ -56,8 +57,9 @@
             </button>
         </form>
     </aside>
+    {% endif %}
 
-    <main>
+    <main class="{% if not selected_event %}aside-shown{% endif %}">
         <h2>
             {% if selected_event %}
             {{ selected_event.title }}
