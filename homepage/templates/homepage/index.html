@@ -116,8 +116,11 @@
 
             {% if package.min_price %}
             <div class="price">
-                <i class="fas fa-dollar-sign"></i>
-                {{ package.min_price }}
+                {% if package.max_price != package.min_price %}
+                ${{ package.min_price }} - ${{ package.max_price }}
+                {% else %}
+                ${{ package.min_price }}
+                {% endif %}
             </div>
             {% endif %}
         </div>
