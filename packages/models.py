@@ -119,8 +119,6 @@ class DailyItinerary(models.Model):
     class Meta:
         verbose_name_plural = 'Daily Itineraries'
         ordering = ['day']
-        unique_together = ('full_itinerary', 'day')
-
 
 
 class PriceTier(models.Model):
