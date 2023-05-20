@@ -1,0 +1,45 @@
+<p>
+Hi <b>{{ inquiry.contact_name }}</b>,
+</p>
+
+<p>
+Thank you for booking your travel with Nepal Environmental Treks &amp; Expedition.
+Your confirmed booking details are as follows:
+</p>
+
+<p style="white-space: pre;">
+Booking Title: {{ inquiry.title }}
+Name: {{ inquiry.contact_name }}
+Email: {{ inquiry.contact_email }}
+No of people: {{ inquiry.no_of_people }}
+Phone: {{ inquiry.contact_phone }}
+No of days: {{ inquiry.no_of_days }}
+Start date: {{ inquiry.start_date }}
+
+{{ event.name }} Special Discount: {{ inquiry.discount_percentage|floatformat:2 }}%
+Amount Paid During Booking: ${{ inquiry.amount_paid|floatformat:2 }}
+</p>
+
+<p>
+We will contact you shortly to work out your detailed travel itinerary based on your preferences.
+If you have any questions, please feel free to reach out at <a href="mailto:envtrekusa@gmail.com">envtrekusa@gmail.com</a>.
+</p>
+
+<p>
+We look forward to welcoming you soon!
+</p>
+
+
+
+<p style="white-space: pre;">
+Thank you,
+Nava Raj Dahal
+Managing Director
+
+<b>Nepal Environmental Treks & Expedition</b>
+Thamel, Kathmandu, Nepal
+Email: <a href="mailto:envtrekusa@gmail.com">envtrekusa@gmail.com</a>
+<a href="https://www.environmentaltrekking.com/">https://www.environmentaltrekking.com/</a>
+<a href="https://www.gotonepal.com/">https://www.gotonepal.com/</a>
+<a href="https://envtrek.com/">https://envtrek.com/</a>
+</p>

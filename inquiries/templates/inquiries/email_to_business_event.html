@@ -1,0 +1,31 @@
+<p>
+Hi,
+</p>
+
+<p>
+    We have received a new booking request for the following from the "{{ event.title }}".
+</p>
+
+
+<p><b>Booking Details</b></p>
+
+<p style="white-space: pre;">
+Booking Title: {{ inquiry.title }}
+Name: {{ inquiry.contact_name }}
+Email: {{ inquiry.contact_email }}
+Number of people: {{ inquiry.no_of_people }}
+Phone: {{ inquiry.contact_phone }}
+Number of days: {{ inquiry.no_of_days }}
+Start date: {{ inquiry.start_date }}
+
+{{ event.name }} Special Discount: {{ inquiry.discount_percentage|floatformat:2 }}%
+Amount Paid During Booking: ${{ inquiry.amount_paid|floatformat:2 }}
+</p>
+
+<p>
+    <b>Additional Message from Client:</b>
+</p>
+
+<p style="white-space: pre;">
+    {{ inquiry.message }}
+</p>

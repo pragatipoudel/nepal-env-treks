@@ -10,7 +10,11 @@
 
 <main>
     <h2>
+        {% if event %}
+        {{ event.name }} Booking Form
+        {% else %}
         Make an Inquiry
+        {% endif %}
     </h2>
     <form method="post">
         {% csrf_token %}

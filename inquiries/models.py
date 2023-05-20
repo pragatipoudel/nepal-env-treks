@@ -18,3 +18,12 @@ class Inquiry(models.Model):
 
     class Meta:
         verbose_name_plural = 'Inquiries'
+
+
+
+class EventAdminInquiry(Inquiry):
+    discount_percentage = models.FloatField()
+    amount_paid = models.FloatField()
+
+    class Meta:
+        verbose_name_plural = 'Event Admin Inquiries'
