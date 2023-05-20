@@ -102,6 +102,7 @@ class FullItinerary(models.Model):
 
     class Meta:
         verbose_name_plural = 'Full Itineraries'
+        ordering = ['package__rank']
 
 
 class DailyItinerary(models.Model):
