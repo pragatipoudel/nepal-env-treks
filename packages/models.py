@@ -68,7 +68,10 @@ class Package(models.Model):
         return self.title
     
     def min_price(self):
-        return self.pricetier_set.first() and self.pricetier_set.first().price
+        return self.pricetier_set.first() and int(self.pricetier_set.first().price)
+    
+    def max_price(self):
+        return self.pricetier_set.last() and int(self.pricetier_set.last().price)
     
     def get_absolute_url(self):
          return reverse('packages:detail', kwargs={ 'slug': self.slug })

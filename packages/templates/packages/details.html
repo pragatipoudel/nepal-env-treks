@@ -36,21 +36,22 @@
 
     <main>
         <section id="booking">
-            {% if package.min_price %}
-            <div class="price-before">
-                Starting from
-            </div>
-            {% endif %}
             <div class="price">
                 {% if package.min_price %}
                 <div class="price">
-                    <i class="fas fa-dollar-sign"></i>
-                    {{ package.min_price }} <span>/ person</span>
+                    <!-- <i class="fas fa-dollar-sign"></i> -->
+                    {% if package.max_price != package.min_price %}
+                    ${{ package.min_price }} - ${{ package.max_price }}* <span>/ person</span>
+                    {% else %}
+                    ${{ package.min_price }}* <span>/ person</span>
+                    {% endif %}
                 </div>
                 {% endif %}
                 <ul class="info">
-                    <li> <i class="fas fa-check"></i> Group discount available </li>
-                    <li> <i class="fas fa-check"></i> Best price guaranteed </li>
+                    <!-- <li> <i class="fas fa-check"></i> Group discount available </li>
+                    <li> <i class="fas fa-check"></i> Best price guaranteed </li> -->
+                    <li>* Price varies with group size </li>
+                    <li>&nbsp; (Group discount available)</li>
                 </ul>
                 <a href="{% url 'inquiries:inquiry' %}?title={{ package.title|urlencode }}">Request Booking</a>
             </div>

@@ -88,12 +88,11 @@ main {
     .info {
         list-style: none;
         padding: 0;
-        text-transform: capitalize;
         font-size: 14px;
+        font-weight: 500;
 
         li {
             margin: 4px 0;
-            color: #000a;
 
             i {
                 margin-right: 4px;
