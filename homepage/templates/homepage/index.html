@@ -56,6 +56,16 @@
     </section>
 </header>
 
+{% if special_event %}
+<section id="special-banner">
+    <a href="{% url 'packages:event' event_slug=special_event.slug %}" class="banner">
+        <h3>{{ special_event.title }}</h3>
+        <h4>{{ special_event.description }}</h4>
+        <p> Click here to explore featured packages with special rates </p>
+    </a>
+</section>
+{% endif %}
+
 <section id="trip-types">
     {% for activity in activities|slice:":6" %}
         <a href="{% url 'packages:search' %}?activity={{ activity.id }}" class="trip-type">

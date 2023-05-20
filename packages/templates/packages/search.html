@@ -59,7 +59,11 @@
 
     <main>
         <h2>
+            {% if selected_event %}
+            {{ selected_event.title }}
+            {% else %}
             Search Results
+            {% endif %}
         </h2>
         <div class="search-header">
             <!--label>

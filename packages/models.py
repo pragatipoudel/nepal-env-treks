@@ -4,6 +4,21 @@ from django.urls import reverse
 from destinations.models import Destination
 
 
+class SpecialEvent(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+    is_active = models.BooleanField(default=False)
+    slug = models.SlugField(blank=True)
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        if self.slug == '':
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+
 class Activity(models.Model):
     name = models.CharField(max_length=255)
     header_image = models.ImageField(upload_to='images/destinations', null=True, blank=True)
@@ -55,6 +70,7 @@ class Package(models.Model):
     destinations = models.ManyToManyField(Destination)
     amenities = models.ManyToManyField(Amenity, blank=True)
     slug = models.SlugField(max_length=255, blank=True)
+    special_events = models.ManyToManyField(SpecialEvent, blank=True)
 
     class Meta:
         ordering =  ['rank']

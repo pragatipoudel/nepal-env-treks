@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import PriceTier, Activity, Season, Package, Amenity, DailyItinerary, FullItinerary
+from .models import PriceTier, Activity, Season, Package, Amenity, DailyItinerary, FullItinerary, SpecialEvent
 
 
 class DailyItineraryInline(admin.StackedInline):
@@ -22,6 +22,7 @@ class PackageAdmin(admin.ModelAdmin):
 
 admin.site.register(Activity)
 admin.site.register(Season)
+admin.site.register(SpecialEvent)
 admin.site.register(Package, PackageAdmin)
 admin.site.register(Amenity)
 admin.site.register(FullItinerary, FullItineraryAdmin)
